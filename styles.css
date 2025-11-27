@@ -124,6 +124,10 @@ body {
     overflow: hidden;
 }
 
+#hero #aurora-background {
+    opacity: 0.3;
+}
+
 .hero-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -132,6 +136,8 @@ body {
     gap: 4rem;
     align-items: center;
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-name {
@@ -140,11 +146,28 @@ body {
     font-weight: 800;
     line-height: 1;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold) 100%);
+    background: linear-gradient(
+        110deg,
+        var(--text-primary) 0%,
+        var(--gold) 35%,
+        rgba(255, 255, 255, 0.9) 50%,
+        var(--gold) 65%,
+        var(--text-primary) 100%
+    );
+    background-size: 200% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: fadeInUp 0.8s ease-out;
+    animation: fadeInUp 0.8s ease-out, heroShimmer 8s ease-in-out infinite;
+}
+
+@keyframes heroShimmer {
+    0%, 100% {
+        background-position: 0% 0;
+    }
+    50% {
+        background-position: 100% 0;
+    }
 }
 
 .hero-tagline {
@@ -480,6 +503,23 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--gold);
+    position: relative;
+    display: inline-block;
+    transition: var(--transition-smooth);
+}
+
+.timeline-item:hover .timeline-header h3 {
+    background: linear-gradient(
+        120deg,
+        var(--gold) 40%,
+        rgba(255, 255, 255, 0.95) 50%,
+        var(--gold) 60%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 2.5s linear infinite;
 }
 
 .timeline-date {
@@ -492,6 +532,23 @@ body {
     color: var(--blue);
     font-weight: 600;
     margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+    transition: var(--transition-smooth);
+}
+
+.timeline-item:hover .timeline-org {
+    background: linear-gradient(
+        120deg,
+        var(--blue) 40%,
+        rgba(255, 255, 255, 0.95) 50%,
+        var(--blue) 60%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 2.5s linear infinite;
 }
 
 .timeline-details {
@@ -583,6 +640,23 @@ body {
     font-weight: 700;
     color: var(--gold);
     margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+    transition: var(--transition-smooth);
+}
+
+.project-card:hover .project-title {
+    background: linear-gradient(
+        120deg,
+        var(--gold) 40%,
+        rgba(255, 255, 255, 0.95) 50%,
+        var(--gold) 60%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 2.5s linear infinite;
 }
 
 .project-description {
@@ -788,6 +862,15 @@ footer p {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes shine {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: -100% 0;
     }
 }
 

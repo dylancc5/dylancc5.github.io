@@ -3,20 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dylan Chen | Applied Math + Data Science @ Berkeley</title>
-    
+    <title>Dylan Chen | Applied Math + Data Science @ UC Berkeley</title>
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Dylan Chen" />
-    <meta property="og:description" content="Applied Math + Data Science @ Berkeley | Deep Learning Research & Agentic AI Development" />
+    <meta
+      property="og:description"
+      content="Applied Math + Data Science @ UC Berkeley | Deep Learning Research & Agentic AI Development"
+    />
     <meta property="og:url" content="https://dylancc5.github.io/" />
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Dylan Chen" />
-    <meta name="twitter:description" content="Applied Math + Data Science @ Berkeley | Deep Learning Research & Agentic AI Development" />
-    
+    <meta
+      name="twitter:description"
+      content="Applied Math + Data Science @ UCBerkeley | Deep Learning Research & Agentic AI Development"
+    />
+
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="Aurora.css" />
+    <link rel="stylesheet" href="SpotlightCard.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -41,11 +49,12 @@
 
     <!-- Hero Section -->
     <section id="hero">
+      <div id="aurora-background" class="aurora-container"></div>
       <div class="hero-content">
         <div class="hero-text">
           <h1 class="hero-name">Dylan Chen</h1>
           <p class="hero-tagline">
-            Applied Math + Data Science @ Berkeley |
+            Applied Math + Data Science @ UC Berkeley |
             <span class="highlight-gold">Deep Learning Research</span> &
             <span class="highlight-blue">Agentic AI Development</span>
           </p>
@@ -148,15 +157,15 @@
             </p>
           </div>
           <div class="about-stats">
-            <div class="stat-card">
+            <div class="stat-card card-spotlight">
               <div class="stat-number" data-target="3.89">0.00</div>
               <div class="stat-label">GPA</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card card-spotlight">
               <div class="stat-number" data-target="10">0</div>
               <div class="stat-label">Years Coding</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card card-spotlight">
               <div class="stat-number" data-target="15">0</div>
               <div class="stat-label">Projects Shipped</div>
             </div>
@@ -172,7 +181,7 @@
         <div class="timeline">
           <div class="timeline-item" data-index="0">
             <div class="timeline-dot"></div>
-            <div class="timeline-content">
+            <div class="timeline-content card-spotlight">
               <div class="timeline-header">
                 <h3>Product & Technical Lead</h3>
                 <span class="timeline-date">Aug 2025 – Present</span>
@@ -197,7 +206,7 @@
 
           <div class="timeline-item" data-index="1">
             <div class="timeline-dot"></div>
-            <div class="timeline-content">
+            <div class="timeline-content card-spotlight">
               <div class="timeline-header">
                 <h3>HPC Intern</h3>
                 <span class="timeline-date">Jun 2025 – Aug 2025</span>
@@ -224,7 +233,7 @@
 
           <div class="timeline-item" data-index="2">
             <div class="timeline-dot"></div>
-            <div class="timeline-content">
+            <div class="timeline-content card-spotlight">
               <div class="timeline-header">
                 <h3>Database Administrator</h3>
                 <span class="timeline-date">Aug 2024 – May 2025</span>
@@ -249,7 +258,7 @@
 
           <div class="timeline-item" data-index="3">
             <div class="timeline-dot"></div>
-            <div class="timeline-content">
+            <div class="timeline-content card-spotlight">
               <div class="timeline-header">
                 <h3>Product & Discovery Intern</h3>
                 <span class="timeline-date">Feb 2025 – May 2025</span>
@@ -280,7 +289,7 @@
       <div class="container">
         <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
-          <div class="project-card" data-index="0">
+          <div class="project-card card-spotlight" data-index="0">
             <div class="project-number">01</div>
             <h3 class="project-title">CITRIS Quest</h3>
             <p class="project-description">
@@ -297,7 +306,7 @@
             </div>
           </div>
 
-          <div class="project-card" data-index="1">
+          <div class="project-card card-spotlight" data-index="1">
             <div class="project-number">02</div>
             <h3 class="project-title">ANDROMEDA @ NASA</h3>
             <p class="project-description">
@@ -313,7 +322,7 @@
             </div>
           </div>
 
-          <div class="project-card" data-index="2">
+          <div class="project-card card-spotlight" data-index="2">
             <div class="project-number">03</div>
             <h3 class="project-title">Assistify</h3>
             <p class="project-description">
@@ -462,10 +471,12 @@
     <!-- Footer -->
     <footer>
       <div class="container">
-        <p>&copy; 2024 Dylan Chen. Built with creativity & code.</p>
+        <p>&copy; 2025 Dylan Chen. Built with creativity & code.</p>
       </div>
     </footer>
 
+    <script type="module" src="aurora-init.js"></script>
+    <script src="spotlight.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
