@@ -6,15 +6,12 @@
     --text-secondary: #e5e5e5;
     --text-muted: #a0a0a0;
     --gold: #f4c430;
-    --gold-dark: #d4af37;
     --blue: #4a9eff;
-    --blue-dark: #3d82d1;
     
     --font-display: 'Syne', sans-serif;
     --font-body: 'DM Sans', sans-serif;
     
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /* ===== Reset & Base Styles ===== */
@@ -109,6 +106,14 @@ body {
 }
 
 .nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: var(--gold);
+}
+
+.nav-link.active::after {
     width: 100%;
 }
 
