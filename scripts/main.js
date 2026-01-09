@@ -18,15 +18,23 @@ const navLinks = document.querySelectorAll('.nav-link');
 
 window.addEventListener('scroll', () => {
     let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-    
+
+    // Check if user is at the very bottom of the page
+    const isAtBottom = (window.innerHeight + window.pageYOffset) >= document.documentElement.scrollHeight - 10;
+
+    if (isAtBottom) {
+        // Force contact section to be active when at the bottom
+        current = 'contact';
+    } else {
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.pageYOffset >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
+    }
+
     navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href').slice(1) === current) {
@@ -245,32 +253,34 @@ document.addEventListener('keydown', (e) => {
 });
 
 function activateEasterEgg() {
-    // Create confetti effect
-    const colors = ['#f4c430', '#4a9eff'];
-    for (let i = 0; i < 100; i++) {
-        createConfetti(colors[Math.floor(Math.random() * colors.length)]);
+    // Smooth scroll to contact section
+    const contactSection = document.querySelector('#contact');
+    if (contactSection) {
+        contactSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
     }
-    
-    // Show message
-    const message = document.createElement('div');
-    message.textContent = '🎮 You found the secret! 🎮';
-    message.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 3rem;
-        font-weight: bold;
-        color: #f4c430;
-        z-index: 10000;
-        text-shadow: 0 0 20px #f4c430;
-        animation: pulse 1s ease-in-out 3;
-    `;
-    document.body.appendChild(message);
-    
+
+    // Wait for scroll to complete, then reveal piano button
     setTimeout(() => {
-        message.remove();
-    }, 3000);
+        const contactLinks = document.querySelector('.contact-links');
+        const pianoBtn = document.querySelector('.piano-btn');
+
+        if (contactLinks && pianoBtn) {
+            // Add shifting class to trigger animation
+            contactLinks.classList.add('shifting');
+
+            // Expand and fade in the piano button
+            pianoBtn.classList.add('visible');
+        }
+
+        // Create refined confetti effect
+        const colors = ['#f4c430', '#4a9eff'];
+        for (let i = 0; i < 50; i++) {
+            createConfetti(colors[Math.floor(Math.random() * colors.length)]);
+        }
+    }, 800);
 }
 
 function createConfetti(color) {
@@ -329,4 +339,4 @@ navLogo.addEventListener('click', () => {
 });
 
 console.log('🚀 Portfolio loaded successfully!');
-console.log('💡 Tip: Try the Konami code for a surprise!');
+console.log('🎹 Tip: Try the Konami code for a musical surprise!');

@@ -802,6 +802,12 @@ body {
     justify-content: center;
     gap: 2rem;
     flex-wrap: wrap;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prevent wrapping when piano button is revealed */
+.contact-links.piano-revealed {
+    flex-wrap: nowrap;
 }
 
 .contact-btn {
@@ -816,9 +822,11 @@ body {
     border-radius: 8px;
     font-weight: 600;
     font-size: 1.1rem;
-    transition: var(--transition-smooth);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1), width 0.5s ease, height 0.5s ease;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .contact-btn::before {
@@ -854,6 +862,240 @@ body {
     transform: rotate(15deg);
 }
 
+.contact-btn:hover svg.piano-icon {
+    transform: rotate(15deg);
+}
+
+/* Piano button hidden by default */
+.piano-btn {
+    max-width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Piano button content (icon and text) hidden by default */
+.piano-btn svg,
+.piano-btn span {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out 0.4s, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Piano button visible state */
+.piano-btn.visible {
+    max-width: 300px;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    margin-left: 0;
+    margin-right: 0;
+    border-left-width: 2px;
+    border-right-width: 2px;
+}
+
+/* Piano button content visible state */
+.piano-btn.visible svg,
+.piano-btn.visible span {
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Contact links animation when piano is revealed */
+.contact-links.shifting {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-wrap: nowrap;
+}
+
+/* Secret Piano Button Animation - Complete Redo */
+.secret-btn {
+    /* Start completely hidden */
+    display: none;
+    position: relative;
+    /* Match the styling of other buttons */
+    background: var(--bg-primary);
+    border-radius: 8px;
+    /* Important: no border initially, we'll paint it in */
+    border: 2px solid transparent !important;
+    /* Ensure it doesn't wrap */
+    flex-shrink: 0;
+}
+
+/* When revealing, show the button */
+.secret-btn.revealing {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Hidden state for content */
+.secret-btn-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    white-space: nowrap;
+}
+
+/* Border lines that will paint in */
+.secret-btn::before,
+.secret-btn::after {
+    content: '';
+    position: absolute;
+    background: var(--gold);
+    z-index: 10;
+}
+
+/* Top border (paints left to right) */
+.secret-btn::before {
+    top: -2px;
+    left: -2px;
+    width: 0;
+    height: 2px;
+}
+
+/* Left border (paints top to bottom) */
+.secret-btn::after {
+    top: -2px;
+    left: -2px;
+    width: 2px;
+    height: 0;
+}
+
+/* Right and bottom borders using additional elements */
+.secret-btn .border-right {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 2px;
+    height: 0;
+    background: var(--gold);
+    z-index: 10;
+}
+
+.secret-btn .border-bottom {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    z-index: 10;
+}
+
+/* Match the hover animation from other buttons - ensure it works after reveal */
+.secret-btn.revealed:hover {
+    color: var(--bg-primary);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(244, 196, 48, 0.3);
+    border-color: var(--gold) !important;
+}
+
+/* Hover background effect - use ::before for the circular background */
+.secret-btn.revealed:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Icon rotation on hover */
+.secret-btn.revealed:hover svg {
+    transform: rotate(180deg) rotate(15deg);
+    transition: var(--transition-smooth);
+}
+
+/* Ensure content is on top */
+.secret-btn .secret-btn-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Step 2: Paint top border (left to right) */
+.secret-btn.revealing::before {
+    animation: paintTopBorder 0.4s ease-out 0.8s forwards;
+}
+
+/* Step 2: Paint left border (top to bottom) - starts with top */
+.secret-btn.revealing::after {
+    animation: paintLeftBorder 0.4s ease-out 1.0s forwards;
+}
+
+/* Step 2: Paint right border (top to bottom) */
+.secret-btn.revealing .border-right {
+    animation: paintRightBorder 0.4s ease-out 1.2s forwards;
+}
+
+/* Step 2: Paint bottom border (right to left) */
+.secret-btn.revealing .border-bottom {
+    animation: paintBottomBorder 0.4s ease-out 1.4s forwards;
+}
+
+/* Step 3: Fade in content */
+.secret-btn.revealing .secret-btn-content {
+    animation: contentFadeIn 0.6s ease-out 1.8s forwards;
+}
+
+/* After animation completes, show actual border and reset pseudo-elements for hover */
+.secret-btn.revealed {
+    border: 2px solid var(--gold) !important;
+}
+
+/* Hide animated border elements after reveal */
+.secret-btn.revealed::before,
+.secret-btn.revealed::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.secret-btn.revealed .border-right,
+.secret-btn.revealed .border-bottom {
+    display: none;
+}
+
+/* Border painting animations */
+@keyframes paintTopBorder {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes paintLeftBorder {
+    from { height: 0; }
+    to { height: 100%; }
+}
+
+@keyframes paintRightBorder {
+    from { height: 0; }
+    to { height: 100%; }
+}
+
+@keyframes paintBottomBorder {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Content fade in */
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 /* ===== Footer ===== */
 footer {
     padding: 2rem 0;
@@ -864,6 +1106,33 @@ footer {
 footer p {
     color: var(--text-muted);
     font-size: 0.9rem;
+}
+
+footer .footer-links {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+}
+
+footer .footer-link {
+    color: var(--text-muted);
+    text-decoration: underline;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    opacity: 0.6;
+}
+
+footer .footer-link:hover {
+    color: var(--gold);
+    opacity: 1;
+}
+
+footer .footer-separator {
+    margin: 0 0.75rem;
+    opacity: 0.5;
+}
+
+footer .footer-hint {
+    opacity: 0.6;
+    font-style: italic;
 }
 
 /* ===== Animations ===== */
