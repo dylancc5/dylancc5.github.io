@@ -270,7 +270,11 @@ function setupExpandableSections() {
         details.addEventListener('transitionend', onTransitionEnd);
     }
 
-    function openSection(toggle, details, sectionKey) {
+    function openSection(toggle, details, sectionKey, clickedContainer) {
+        // Store the container's position before any changes
+        const containerRect = clickedContainer.getBoundingClientRect();
+        const initialTop = containerRect.top;
+
         // Close any currently open in this section
         if (sectionKey === 'experience' && currentOpenExperience) {
             closeSection(currentOpenExperience);
@@ -304,6 +308,27 @@ function setupExpandableSections() {
         } else if (sectionKey === 'projects') {
             currentOpenProject = state;
         }
+
+        // Continuously monitor and adjust scroll position during animation
+        const startTime = Date.now();
+        const duration = 400; // Match CSS transition duration
+
+        function maintainPosition() {
+            const elapsed = Date.now() - startTime;
+            if (elapsed < duration) {
+                const currentTop = clickedContainer.getBoundingClientRect().top;
+                const shift = currentTop - initialTop;
+                if (Math.abs(shift) > 1) {
+                    window.scrollBy({
+                        top: shift,
+                        behavior: 'instant'
+                    });
+                }
+                requestAnimationFrame(maintainPosition);
+            }
+        }
+
+        requestAnimationFrame(maintainPosition);
     }
 
     toggles.forEach(toggle => {
@@ -331,7 +356,7 @@ function setupExpandableSections() {
                     currentOpenProject = null;
                 }
             } else {
-                openSection(toggle, details, sectionKey);
+                openSection(toggle, details, sectionKey, container);
             }
         });
 
