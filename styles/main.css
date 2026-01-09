@@ -576,6 +576,124 @@ body {
     font-weight: bold;
 }
 
+/* ===== Expandable Details (Experience & Projects) ===== */
+.expand-toggle {
+    width: 100%;
+    margin-top: 0;
+    padding: 0;
+    border: none;
+    border-top: 1px solid transparent;
+    background: transparent;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    opacity: 0;
+    max-height: 0;
+    pointer-events: none;
+}
+
+.expand-toggle-label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+}
+
+.timeline-content:hover .expand-toggle,
+.project-card:hover .expand-toggle {
+    margin-top: 1.5rem;
+    padding-top: 0.75rem;
+    border-top-color: rgba(244, 196, 48, 0.15);
+    opacity: 1;
+    max-height: 40px;
+    pointer-events: auto;
+}
+
+.timeline-content:hover .expand-toggle,
+.project-card:hover .expand-toggle {
+    color: var(--gold);
+}
+
+/* Hide the hint row completely while expanded so details replace it */
+.timeline-content .expand-toggle[aria-expanded="true"],
+.project-card .expand-toggle[aria-expanded="true"] {
+    margin-top: 0;
+    padding-top: 0;
+    border-top-color: transparent;
+    opacity: 0;
+    max-height: 0;
+    pointer-events: none;
+}
+
+.expandable-details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-top: 1px solid transparent;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease, padding-top 0.4s ease, padding-bottom 0.4s ease, border-top-color 0.4s ease;
+}
+
+.expandable-details.open {
+    opacity: 1;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-top-color: rgba(244, 196, 48, 0.15);
+}
+
+.details-heading {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+}
+
+.details-section {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+}
+
+.details-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.details-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(74, 158, 255, 0.5);
+    background: rgba(74, 158, 255, 0.06);
+    color: var(--blue);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.details-link:hover {
+    background: var(--blue);
+    color: var(--bg-primary);
+    transform: translateY(-2px);
+}
+
 /* ===== Projects Section ===== */
 #projects {
     padding: 6rem 0;

@@ -236,6 +236,125 @@ skillCategories.forEach((category, index) => {
     category.style.transitionDelay = `${index * 0.1}s`;
 });
 
+// ===== Expandable Experience & Project Details (Accordion) =====
+function setupExpandableSections() {
+    const toggles = document.querySelectorAll('.expand-toggle');
+    if (!toggles.length) return;
+
+    let currentOpenExperience = null;
+    let currentOpenProject = null;
+
+    function closeSection(sectionState) {
+        if (!sectionState) return;
+        const { toggle, details } = sectionState;
+        toggle.setAttribute('aria-expanded', 'false');
+        // Ensure we animate from the current content height back to 0
+        const currentHeight = details.scrollHeight;
+        details.style.maxHeight = `${currentHeight}px`;
+        // Force reflow so we have a concrete start value
+        // eslint-disable-next-line no-unused-expressions
+        details.offsetHeight;
+
+        // Start fade-out and height collapse; opacity animates via .open removal
+        details.classList.remove('open');
+        details.style.maxHeight = '0px';
+
+        // Wait for transition to finish before hiding
+        const onTransitionEnd = (event) => {
+            if (event.propertyName !== 'max-height') return;
+            details.removeEventListener('transitionend', onTransitionEnd);
+            if (!details.classList.contains('open')) {
+                details.hidden = true;
+            }
+        };
+        details.addEventListener('transitionend', onTransitionEnd);
+    }
+
+    function openSection(toggle, details, sectionKey) {
+        // Close any currently open in this section
+        if (sectionKey === 'experience' && currentOpenExperience) {
+            closeSection(currentOpenExperience);
+            currentOpenExperience = null;
+        }
+        if (sectionKey === 'projects' && currentOpenProject) {
+            closeSection(currentOpenProject);
+            currentOpenProject = null;
+        }
+
+        // If this one was already open, just ensure state is closed
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+            closeSection({ toggle, details });
+            return;
+        }
+
+        // Open this details panel
+        toggle.setAttribute('aria-expanded', 'true');
+        details.hidden = false;
+        // Force reflow so transition works when we change maxHeight
+        // eslint-disable-next-line no-unused-expressions
+        details.offsetHeight;
+        details.classList.add('open');
+        // Add extra padding to account for any overflow from buttons/links
+        details.style.maxHeight = `${details.scrollHeight + 20}px`;
+
+        const state = { toggle, details };
+        if (sectionKey === 'experience') {
+            currentOpenExperience = state;
+        } else if (sectionKey === 'projects') {
+            currentOpenProject = state;
+        }
+    }
+
+    toggles.forEach(toggle => {
+        const sectionKey = toggle.getAttribute('data-section');
+        const controlsId = toggle.getAttribute('aria-controls');
+        const details = controlsId ? document.getElementById(controlsId) : null;
+        if (!details) return;
+
+        // Find the container card (timeline-content or project-card)
+        const container = toggle.closest('.timeline-content, .project-card');
+
+        // Ensure collapsed initial state
+        toggle.setAttribute('aria-expanded', 'false');
+        details.classList.remove('open');
+        details.style.maxHeight = '0px';
+        details.hidden = true;
+
+        toggle.addEventListener('click', () => {
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+            if (isExpanded) {
+                closeSection({ toggle, details });
+                if (sectionKey === 'experience') {
+                    currentOpenExperience = null;
+                } else if (sectionKey === 'projects') {
+                    currentOpenProject = null;
+                }
+            } else {
+                openSection(toggle, details, sectionKey);
+            }
+        });
+
+        if (container) {
+            container.addEventListener('click', (e) => {
+                // Ignore clicks on links inside the details area
+                if (e.target.closest('.details-link')) return;
+                // Ignore clicks directly on the toggle itself to avoid double handling
+                if (e.target.closest('.expand-toggle')) return;
+                // Delegate to the same logic as the toggle click
+                toggle.dispatchEvent(new Event('click'));
+            });
+        }
+    });
+}
+
+// Initialize expandable sections once DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupExpandableSections);
+} else {
+    setupExpandableSections();
+}
+
 // ===== Easter Egg: Konami Code =====
 let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 let konamiIndex = 0;
