@@ -482,5 +482,40 @@ navLogo.addEventListener('click', () => {
     });
 });
 
+// ===== Konami Hint Tooltip Fix =====
+// Ensure the tooltip text is visible by setting it via JavaScript as a fallback
+// Tooltip is appended to body to avoid parent opacity issues
+const konamiHint = document.querySelector('.konami-hint');
+if (konamiHint) {
+    // Create a tooltip element
+    const tooltip = document.createElement('div');
+    tooltip.className = 'konami-tooltip';
+    tooltip.textContent = '↑↑↓↓←→←→BA';
+    tooltip.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(tooltip); // Append to body to avoid opacity inheritance
+    
+    // Function to update tooltip position based on konami-hint position
+    const updateTooltipPosition = () => {
+        const rect = konamiHint.getBoundingClientRect();
+        // Position tooltip above the konami-hint element (fixed positioning is viewport-relative)
+        tooltip.style.left = `${rect.left + rect.width / 2}px`;
+        tooltip.style.top = `${rect.top - 5}px`; // 5px margin above (no scrollY needed for fixed)
+    };
+    
+    // Add hover event listeners
+    konamiHint.addEventListener('mouseenter', () => {
+        updateTooltipPosition();
+        tooltip.classList.add('visible');
+    });
+    
+    konamiHint.addEventListener('mouseleave', () => {
+        tooltip.classList.remove('visible');
+    });
+    
+    // Update position on scroll/resize to keep tooltip aligned
+    window.addEventListener('scroll', updateTooltipPosition, { passive: true });
+    window.addEventListener('resize', updateTooltipPosition);
+}
+
 console.log('🚀 Portfolio loaded successfully!');
 console.log('🎹 Tip: Try the Konami code for a musical surprise!');
