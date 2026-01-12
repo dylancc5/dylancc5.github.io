@@ -704,21 +704,109 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.4rem 0.9rem;
-    border-radius: 999px;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
     border: 1px solid rgba(74, 158, 255, 0.5);
     background: rgba(74, 158, 255, 0.06);
     color: var(--blue);
     font-size: 0.8rem;
     font-weight: 500;
     text-decoration: none;
+    transition: all 0.15s ease-out;
+    position: relative;
+    overflow: visible;
+    isolation: isolate;
+}
+
+/* Add a second pseudo-element for the shimmer effect */
+.details-link:not(.clicked) {
+    box-shadow: 0 0 0 1px rgba(74, 158, 255, 0.3);
+}
+
+/* Arrow icon - thick and stubby style matching konami code */
+.details-link::after {
+    content: '';
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    margin-left: 0.35rem;
+    margin-bottom: 0.1rem;
+    /* Create thick stubby arrow using borders */
+    border-top: 2.5px solid var(--blue);
+    border-right: 2.5px solid var(--blue);
+    transform: rotate(45deg);
     transition: var(--transition-smooth);
+}
+
+/* Diagonal glint animation for unclicked links */
+.details-link:not(.clicked) {
+    position: relative;
+    overflow: hidden;
+}
+
+.details-link:not(.clicked)::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    /* Create diagonal gradient glint - very gentle and subtle */
+    background: linear-gradient(
+        135deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(74, 158, 255, 0.08) 44%,
+        rgba(74, 158, 255, 0.2) 48%,
+        rgba(74, 158, 255, 0.4) 50%,
+        rgba(74, 158, 255, 0.2) 52%,
+        rgba(74, 158, 255, 0.08) 56%,
+        transparent 60%,
+        transparent 100%
+    );
+    z-index: 1;
+    opacity: 0.5;
+    pointer-events: none;
+    /* Animate the glint traveling diagonally across the button - slower and gentler */
+    animation: diagonalGlint 3s linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Diagonal glint animation - continuously moves from top-left to bottom-right */
+@keyframes diagonalGlint {
+    0% {
+        transform: translateX(-50%) translateY(-50%);
+    }
+    100% {
+        transform: translateX(50%) translateY(50%);
+    }
+}
+
+/* Remove shimmer when clicked */
+.details-link.clicked::before {
+    display: none;
+}
+
+/* Arrow remains static when clicked */
+.details-link.clicked::after {
+    /* No animation */
 }
 
 .details-link:hover {
     background: var(--blue);
     color: var(--bg-primary);
     transform: translateY(-2px);
+}
+
+.details-link:hover::after {
+    border-color: var(--bg-primary);
+}
+
+.details-link.clicked:hover::after {
+    border-color: var(--bg-primary);
 }
 
 /* ===== Projects Section ===== */

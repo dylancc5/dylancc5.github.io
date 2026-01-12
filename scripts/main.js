@@ -517,5 +517,31 @@ if (konamiHint) {
     window.addEventListener('resize', updateTooltipPosition);
 }
 
+// ===== Details Link Click Tracking =====
+// Track clicked details links to remove shimmer animation
+document.querySelectorAll('.details-link').forEach(link => {
+    // Check if link was previously clicked (using data attribute or localStorage)
+    const linkId = link.href || link.textContent.trim();
+    const storageKey = `details-link-clicked-${linkId}`;
+    
+    // Check localStorage for persisted state
+    if (localStorage.getItem(storageKey) === 'true') {
+        link.classList.add('clicked');
+    }
+    
+    // Add click event listener
+    link.addEventListener('click', function() {
+        // Mark as clicked
+        this.classList.add('clicked');
+        
+        // Store in localStorage to persist across page loads
+        try {
+            localStorage.setItem(storageKey, 'true');
+        } catch (e) {
+            // localStorage might not be available, continue anyway
+        }
+    }, { once: false }); // Allow multiple clicks but keep the clicked state
+});
+
 console.log('🚀 Portfolio loaded successfully!');
 console.log('🎹 Tip: Try the Konami code for a musical surprise!');
