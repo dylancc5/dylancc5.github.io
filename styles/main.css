@@ -790,11 +790,6 @@ body {
     display: none;
 }
 
-/* Arrow remains static when clicked */
-.details-link.clicked::after {
-    /* No animation */
-}
-
 .details-link:hover {
     background: var(--blue);
     color: var(--bg-primary);
