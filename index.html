@@ -253,18 +253,60 @@
                   class="expandable-details"
                   hidden
                 >
-                  <h4 class="details-heading">Impact & Details</h4>
+                  <h4 class="details-heading">
+                    Automating Neurodegenerative Disease Diagnostics
+                  </h4>
                   <p class="details-section">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse potenti. Vestibulum ante ipsum primis in
-                    faucibus orci luctus et ultrices posuere cubilia curae;
-                    Integer interdum, ipsum at posuere volutpat, erat lectus
-                    ultrices nunc, id porta orci lorem id eros.
+                    Momentous Health is building robotics-enabled systems to
+                    automate diagnostic testing for neurodegenerative diseases
+                    in elderly patients. The current workflow relies on manual
+                    test administration, paper-based result recording, and
+                    labor-intensive report generation—creating bottlenecks that
+                    delay patient care. I'm developing an agentic AI
+                    infrastructure that handles the entire clinical data
+                    lifecycle: from OCR-based extraction of test results, to
+                    automated report writing, to compliance verification before
+                    final delivery.
                   </p>
+                  <h4 class="details-heading">
+                    Report Writing Agent with Human-in-the-Loop
+                  </h4>
                   <p class="details-section">
-                    Curabitur eget lorem eget turpis luctus interdum. Praesent
-                    finibus, lorem sed facilisis tincidunt, odio lectus
-                    scelerisque augue, nec ullamcorper nisi arcu sed arcu.
+                    The core challenge is generating clinical reports that meet
+                    strict healthcare regulations while maintaining accuracy
+                    with patient health information. I built a multi-agent
+                    pipeline where OCR systems extract raw test data,
+                    reinforcement learning models refine extraction accuracy
+                    through human feedback, and RAG-powered language models pull
+                    the latest medical guidelines to generate compliant reports.
+                    Each agent specializes in one task—extraction, validation,
+                    or writing—then passes work downstream, creating a modular
+                    system that's easier to debug and improve than monolithic
+                    approaches.
+                  </p>
+                  <h4 class="details-heading">PII-Aware Document Generation</h4>
+                  <p class="details-section">
+                    Healthcare data requires careful handling of personally
+                    identifiable information. The system implements safeguards
+                    at every stage: OCR outputs are sanitized before storage,
+                    RAG retrieval filters out irrelevant patient data, and the
+                    final PDF generation layer applies role-based access
+                    controls. This architecture ensures compliance with HIPAA
+                    and other healthcare privacy standards while maintaining
+                    fast turnaround times for clinical staff.
+                  </p>
+                  <h4 class="details-heading">
+                    From Manual Workflows to End-to-End Automation
+                  </h4>
+                  <p class="details-section">
+                    The broader vision integrates this report writing system
+                    with robotics performing the actual diagnostic tests,
+                    creating a fully autonomous pipeline from patient assessment
+                    to results delivery. This work taught me how to design AI
+                    systems that operate in regulated, high-stakes environments
+                    where mistakes have real consequences—forcing careful
+                    attention to validation, interpretability, and failure modes
+                    that pure research projects often ignore.
                   </p>
                   <div class="details-links">
                     <a
@@ -324,17 +366,63 @@
                   class="expandable-details"
                   hidden
                 >
-                  <h4 class="details-heading">Research Focus</h4>
+                  <h4 class="details-heading">
+                    Predicting Diabetes Complications Before They Surface
+                  </h4>
                   <p class="details-section">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Pellentesque non leo eu dui fringilla vulputate. Vivamus
-                    feugiat, lorem vitae pretium malesuada, arcu erat consequat
-                    arcu, eget tincidunt lorem risus quis massa.
+                    Type 2 diabetes affects over 6% of the global population,
+                    but current diagnostic tools only catch problems after
+                    clinical symptoms emerge—often when damage is already done.
+                    I'm working with the AI-READI dataset, a multimodal
+                    collection of 4,000 patient records balanced across race,
+                    ethnicity, gender, and disease severity, to build predictive
+                    models that identify risk trajectories hours to weeks before
+                    patients experience symptoms. The goal is to move from
+                    reactive treatment to proactive intervention.
                   </p>
+                  <h4 class="details-heading">
+                    Time-Series Forecasting on Longitudinal Health Data
+                  </h4>
                   <p class="details-section">
-                    Integer sit amet massa at odio condimentum bibendum. Cras
-                    vulputate, dui id ultrices tempor, dolor velit mattis nisi,
-                    id varius nulla ipsum a risus.
+                    The AI-READI dataset includes continuous glucose monitoring
+                    data, wearable sensor outputs, lab results, and
+                    environmental factors tracked over time. I'm implementing
+                    time-series forecasting models using JAX and GluonTS to
+                    analyze these longitudinal patterns and predict glucose
+                    spikes, hypoglycemic events, and disease progression
+                    markers. The challenge is handling data collected at varying
+                    sampling rates—CGM sensors log every 5 minutes while lab
+                    tests happen monthly—requiring models that can reason across
+                    different temporal resolutions.
+                  </p>
+                  <h4 class="details-heading">
+                    Learning Patient-Specific Disease Dynamics
+                  </h4>
+                  <p class="details-section">
+                    Rather than building one universal model, we're exploring
+                    whether individual patients exhibit unique disease
+                    signatures. The hypothesis: if you can fit a personalized
+                    model to each patient's historical data, the model's
+                    hyperparameters might reveal higher-order patterns that
+                    generalize across populations. For instance, two patients
+                    with similar glucose variability but different model
+                    learning rates might represent distinct disease subtypes
+                    with different intervention needs.
+                  </p>
+                  <h4 class="details-heading">
+                    Engineering Multimodal Feature Pipelines
+                  </h4>
+                  <p class="details-section">
+                    Raw sensor data isn't directly usable for ML models. I'm
+                    building feature extraction systems that process vitals, lab
+                    markers, and physiological signals into unified
+                    representations suitable for health prediction. This
+                    involves handling missing data (not all patients have all
+                    measurements), normalizing across different units and
+                    scales, and identifying which combinations of features best
+                    predict specific outcomes. The work sits at the intersection
+                    of signal processing, clinical domain knowledge, and machine
+                    learning architecture design.
                   </p>
                   <div class="details-links">
                     <a
@@ -395,17 +483,65 @@
                   class="expandable-details"
                   hidden
                 >
-                  <h4 class="details-heading">Leadership & Execution</h4>
+                  <h4 class="details-heading">
+                    Celebrating 25 Years with Cross-Campus Gameplay
+                  </h4>
                   <p class="details-section">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aliquam erat volutpat. In euismod, odio id porttitor
-                    vulputate, ipsum nunc interdum nunc, nec facilisis erat urna
-                    vitae augue.
+                    CITRIS Quest commemorates the 25th anniversary of UC's Center
+                    for Information Technology Research in the Interest of Society
+                    by bringing students across four UC campuses together through a
+                    mobile game inspired by Space Invaders. Players physically
+                    explore their campuses to find and scan pixel art stickers,
+                    earning points for their campus in a semester-long competition.
+                    The game merges digital gameplay with physical exploration,
+                    requiring computer vision to work reliably under real-world
+                    conditions—varied lighting, camera angles, partial occlusions,
+                    and low-quality phone cameras.
                   </p>
+                  <h4 class="details-heading">
+                    Training CNNs for Real-World Robustness
+                  </h4>
                   <p class="details-section">
-                    Sed at velit sed justo consequat interdum. Donec suscipit
-                    bibendum erat, non luctus nulla fermentum quis. Integer
-                    molestie nunc libero, vitae rhoncus elit lacinia in.
+                    I built a PyTorch CNN to classify pixel art characters from
+                    phone camera scans. The technical challenge wasn't accuracy on
+                    clean test sets—it was generalization to the messy conditions
+                    players would actually encounter: outdoor lighting, motion blur,
+                    tilted angles, shadows, and stickers that get worn or damaged
+                    over time. I implemented cross-entropy loss with learning rate
+                    scheduling and aggressive regularization (dropout, data
+                    augmentation) to prevent overfitting to pristine training
+                    images. The model needed to be both accurate and confident
+                    enough to reject non-game images without frustrating players
+                    with false negatives.
+                  </p>
+                  <h4 class="details-heading">
+                    Full-Stack Product from Zero to Launch
+                  </h4>
+                  <p class="details-section">
+                    Beyond the ML model, I led development of the entire product
+                    stack: Flutter mobile app for iOS and Android, Supabase
+                    PostgreSQL backend managing user authentication and scan
+                    storage, real-time leaderboards showing campus standings, and
+                    admin tools for monitoring player activity. I managed a
+                    cross-functional team through sprint planning, code reviews, and
+                    feature prioritization while balancing technical debt against
+                    shipping deadlines. This meant making architectural decisions
+                    early—like choosing Flutter over native development for faster
+                    iteration—and living with those constraints later.
+                  </p>
+                  <h4 class="details-heading">
+                    Making AI Accessible to Non-Technical Users
+                  </h4>
+                  <p class="details-section">
+                    The most valuable lesson was designing for actual user behavior,
+                    not ideal conditions. Early versions required perfect scans in
+                    good lighting. Real users took photos while walking, in shadows,
+                    or from weird angles because that's when they found stickers. I
+                    rebuilt the pipeline to handle this: multiple model passes at
+                    different confidence thresholds, preprocessing to normalize
+                    lighting and perspective, and UI feedback guiding users to
+                    better shots without being annoying. The goal wasn't just "build
+                    a CNN"—it was "build something students actually enjoy using."
                   </p>
                   <div class="details-links">
                     <a
@@ -473,16 +609,71 @@
                   class="expandable-details"
                   hidden
                 >
-                  <h4 class="details-heading">System Design</h4>
+                  <h4 class="details-heading">
+                    Automating Failure Diagnosis at Supercomputing Scale
+                  </h4>
                   <p class="details-section">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Maecenas eget dignissim lacus. Donec sed purus arcu. Donec
-                    mollis massa nec odio viverra, non interdum velit tempor.
+                    NASA's supercomputing infrastructure processes thousands of
+                    jobs daily across climate modeling, aerodynamics
+                    simulations, and mission-critical calculations. When jobs
+                    fail, engineers manually sift through logs to diagnose root
+                    causes—a bottleneck that delays research and wastes compute
+                    resources. ANDROMEDA automates this process using
+                    unsupervised machine learning to identify failure patterns,
+                    categorize issues, and surface interpretable insights
+                    without requiring labeled training data.
                   </p>
+                  <h4 class="details-heading">
+                    The Challenge: No Ground Truth Labels
+                  </h4>
                   <p class="details-section">
-                    Fusce feugiat consequat lorem, ac efficitur tortor pulvinar
-                    a. Praesent quis risus sed nibh pretium faucibus non quis
-                    lorem.
+                    Traditional supervised learning requires labeled examples of
+                    "this log pattern = memory overflow" or "this trace =
+                    network timeout." NASA's failure logs don't come
+                    pre-labeled, and manually tagging thousands of historical
+                    failures isn't feasible. The system needed to learn failure
+                    signatures directly from unlabeled data while producing
+                    explanations that domain experts could validate and act on.
+                  </p>
+                  <h4 class="details-heading">
+                    Building Self-Supervised Pattern Recognition
+                  </h4>
+                  <p class="details-section">
+                    I designed a contrastive learning architecture that treats
+                    similar failure traces as positive pairs and dissimilar ones
+                    as negatives, learning representations that cluster related
+                    failures together. The pipeline processes raw log data
+                    through semantic embedding models to capture contextual
+                    meaning, then applies HDBSCAN clustering to group failures
+                    by shared characteristics. An attention mechanism highlights
+                    which log segments drove each cluster assignment, giving
+                    operators transparency into why the system flagged specific
+                    patterns.
+                  </p>
+                  <h4 class="details-heading">
+                    Production Integration and Interpretability
+                  </h4>
+                  <p class="details-section">
+                    Rather than a black-box classifier, ANDROMEDA generates
+                    structured diagnostic reports mapping each failure to its
+                    closest historical matches and surfacing the distinguishing
+                    features. This lets engineers validate whether the system's
+                    pattern detection aligns with known failure modes. The
+                    architecture handles NASA's log volume and diversity while
+                    maintaining fast inference for real-time alerting.
+                  </p>
+                  <h4 class="details-heading">
+                    Scaling RCA Without Manual Annotation
+                  </h4>
+                  <p class="details-section">
+                    The system demonstrated that unsupervised learning could
+                    replace manual root cause analysis for recurring failure
+                    classes. By eliminating the labeling bottleneck, the
+                    approach generalizes to new failure types as they emerge
+                    rather than requiring retraining on annotated data. This
+                    work showed me how critical interpretability is when
+                    deploying ML in high-stakes infrastructure—domain experts
+                    won't trust opaque models, even if metrics look good.
                   </p>
                   <div class="details-links">
                     <a
@@ -553,16 +744,62 @@
                   class="expandable-details"
                   hidden
                 >
-                  <h4 class="details-heading">Data Systems</h4>
+                  <h4 class="details-heading">
+                    Leadership Development at Berkeley Scale
+                  </h4>
                   <p class="details-section">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Integer ac mi nec lectus gravida condimentum. Quisque id
-                    imperdiet odio. Praesent a sapien sed enim interdum
-                    ullamcorper.
+                    Berkeley Student Leadership Academy is a year-long
+                    undergraduate program offering workshops on leadership,
+                    engagement, and diversity across campus. Students attend seven
+                    workshops minimum (four required, three elective) covering
+                    topics like team dynamics, communication strategies, and
+                    inclusive leadership. Managing workshop logistics—tracking
+                    attendance, coordinating facilitators, archiving feedback—generated
+                    massive amounts of data across hundreds of participants and
+                    dozens of events each year.
                   </p>
+                  <h4 class="details-heading">
+                    Replacing a Broken Spreadsheet Nightmare
+                  </h4>
                   <p class="details-section">
-                    Suspendisse ac enim et tortor ornare cursus vitae non mi.
-                    Etiam at aliquet lorem, eget pharetra tortor.
+                    The existing system was a single, bloated spreadsheet with
+                    hundreds of rows and columns filled with binary 0s and 1s
+                    indicating attendance, completion status, and requirements met.
+                    Finding information required scrolling through endless cells,
+                    updating records meant hunting for the right row, and setting
+                    up the tracker each semester took weeks of manual copying,
+                    formula adjustments, and data migration. The system worked
+                    barely, and only for people who already knew how to navigate
+                    it—a major barrier for new administrators.
+                  </p>
+                  <h4 class="details-heading">
+                    Automated Tracker Setup in Under 10 Minutes
+                  </h4>
+                  <p class="details-section">
+                    I built a Google Apps Script automation that generates the
+                    entire workshop tracking infrastructure from a template with a
+                    single button click. The script creates properly formatted
+                    spreadsheets with attendance tracking, automatically generates
+                    linked Google Forms for registration and feedback, populates
+                    formulas for calculating completion requirements, and sets up
+                    data validation rules to prevent entry errors. What previously
+                    took a couple weeks of tedious setup now happens in about 10
+                    minutes, freeing administrators to focus on improving workshop
+                    content and participant experience.
+                  </p>
+                  <h4 class="details-heading">Redesigning for Human Usability</h4>
+                  <p class="details-section">
+                    Beyond automation, I restructured how data was organized.
+                    Instead of cryptic binary columns, the new system uses readable
+                    status indicators, color coding for quick visual scanning, and
+                    separate sheets for different data types (attendance vs.
+                    feedback vs. completion tracking). The archive system moved
+                    historical data into structured folders with consistent naming
+                    conventions, making it trivial to retrieve past program data
+                    for trend analysis or reporting. The goal wasn't just technical
+                    efficiency—it was making the system usable for future
+                    administrators without requiring institutional knowledge or
+                    extensive training.
                   </p>
                   <div class="details-links">
                     <a
@@ -634,17 +871,65 @@
                   class="expandable-details"
                   hidden
                 >
-                  <h4 class="details-heading">Discovery & Research</h4>
+                  <h4 class="details-heading">
+                    Rethinking Phone Ownership Economics
+                  </h4>
                   <p class="details-section">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum ante ipsum primis in faucibus orci luctus et
-                    ultrices posuere cubilia curae; Vivamus convallis tortor a
-                    leo fermentum, at tempus sem lacinia.
+                    Cyclick.ai is building a phone subscription model that
+                    challenges the traditional buy-and-own approach to personal
+                    electronics. Users rent phones instead of purchasing them
+                    outright, gaining flexibility to upgrade frequently, bundled
+                    repair coverage, and predictable monthly costs. When users
+                    return devices, Cyclick resells them to refurbishers in markets
+                    like Spain where there's strong demand for certified pre-owned
+                    phones. This circular business model reduces the company's
+                    capital requirements and passes savings to users through lower
+                    subscription prices.
                   </p>
+                  <h4 class="details-heading">
+                    Discovering Hidden Costs in Buy Now, Pay Later
+                  </h4>
                   <p class="details-section">
-                    In hac habitasse platea dictumst. Sed sagittis, justo nec
-                    convallis rhoncus, ipsum orci consequat lacus, a porta nibh
-                    quam sit amet sapien.
+                    Through user research and competitive analysis, I identified
+                    major pain points in existing BNPL (Buy Now, Pay Later)
+                    services: hidden fees buried in fine print, confusing interest
+                    calculations, and unexpected charges that destroyed trust. Users
+                    wanted ownership flexibility but were burned by predatory
+                    pricing structures. The insight: users weren't opposed to
+                    subscription models—they just didn't understand the economic
+                    benefits because competitors obscured the math. Our opportunity
+                    was radical transparency: show exactly what users save over
+                    time, compare total cost of ownership vs. subscription, and
+                    eliminate surprise fees entirely.
+                  </p>
+                  <h4 class="details-heading">
+                    Competitive Pricing Strategy and Market Entry
+                  </h4>
+                  <p class="details-section">
+                    I built pricing models scraping data from major BNPL
+                    competitors to understand their fee structures, interest rates,
+                    and total cost calculations. The analysis revealed a pricing
+                    band where Cyclick could undercut established players while
+                    maintaining healthy margins through efficient refurbishment
+                    partnerships. The key leverage point: while competitors treat
+                    returned phones as losses or sell them at commodity prices,
+                    Cyclick's Spanish refurbisher network paid premium rates for
+                    quality devices, creating additional revenue streams beyond
+                    subscription fees.
+                  </p>
+                  <h4 class="details-heading">
+                    Expanding Accessibility in Emerging Markets
+                  </h4>
+                  <p class="details-section">
+                    The subscription model's biggest advantage isn't just
+                    flexibility for affluent users—it's access for populations with
+                    limited purchasing power. Markets in Africa and other developing
+                    regions have strong demand for smartphones but lack capital for
+                    $800+ upfront purchases. Monthly subscriptions dramatically
+                    lower the entry barrier while Cyclick's refurbishment model
+                    keeps costs sustainable. I evaluated credit vetting integrations
+                    with Experian and Equifax to enable this expansion, balancing
+                    fraud risk against market accessibility.
                   </p>
                   <div class="details-links">
                     <a
@@ -695,16 +980,58 @@
               <span class="expand-toggle-label">Click to view details</span>
             </button>
             <div id="project-details-0" class="expandable-details" hidden>
-              <h4 class="details-heading">Modeling & Data Pipeline</h4>
+              <h4 class="details-heading">
+                Building Early Warning Systems for Diabetes
+              </h4>
               <p class="details-section">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                aliquet, nunc id iaculis vulputate, nibh lorem euismod elit,
-                eget interdum elit est a leo.
+                Current diabetes management is reactive: doctors intervene after
+                patients show symptoms or lab results cross alarm thresholds. By
+                then, physiological damage is underway. I'm developing predictive
+                models that analyze continuous glucose monitoring data, wearable
+                sensor outputs, and lab markers to identify risk patterns before
+                symptoms emerge—giving clinicians hours to weeks of advance
+                warning to adjust medications, recommend lifestyle changes, or
+                schedule preventive interventions.
               </p>
+              <h4 class="details-heading">
+                Multimodal Data at Different Time Scales
+              </h4>
               <p class="details-section">
-                Nulla facilisi. Maecenas posuere, orci a pulvinar venenatis,
-                arcu felis condimentum nisl, eget blandit odio lacus eget
-                ligula.
+                The AI-READI dataset combines data sources with vastly different
+                temporal resolutions: CGM sensors log glucose every 5 minutes,
+                heart rate monitors sample continuously, lab tests happen monthly,
+                and environmental factors (air quality, weather) update daily.
+                Standard time-series models struggle with this heterogeneity. I'm
+                using JAX for fast numerical computation and GluonTS for
+                specialized time-series architectures that can handle irregular
+                sampling rates, missing data, and multi-scale patterns.
+              </p>
+              <h4 class="details-heading">
+                Learning Patient-Specific Disease Trajectories
+              </h4>
+              <p class="details-section">
+                Instead of building one universal model for all patients, we're
+                exploring whether personalized models reveal deeper insights. The
+                approach: fit individual models to each patient's longitudinal
+                data, then analyze the learned hyperparameters (learning rates,
+                attention weights, feature importance scores) to identify disease
+                subtypes. Two patients with similar glucose levels might have
+                completely different underlying dynamics—one shows rapid spikes
+                and crashes (high variability), another shows slow drift (low
+                variability but poor long-term control). These patterns might
+                require different treatment strategies.
+              </p>
+              <h4 class="details-heading">From Research to Clinical Utility</h4>
+              <p class="details-section">
+                The ultimate goal isn't just accurate predictions—it's actionable
+                insights clinicians can use. That means models must explain why
+                they flagged a patient as high-risk: Which biomarkers are trending
+                wrong? What behavioral patterns correlate with risk? Is this a
+                short-term spike or long-term trajectory shift? I'm building
+                feature importance analysis and attention visualization tools that
+                surface these insights, making the system useful for doctors who
+                need to understand model reasoning before trusting its
+                recommendations.
               </p>
               <div class="details-links">
                 <a
@@ -745,16 +1072,55 @@
               <span class="expand-toggle-label">Click to view details</span>
             </button>
             <div id="project-details-1" class="expandable-details" hidden>
-              <h4 class="details-heading">Gameplay & Architecture</h4>
+              <h4 class="details-heading">
+                Computer Vision Meets Physical Gameplay
+              </h4>
               <p class="details-section">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                posuere, velit in varius laoreet, tortor urna egestas neque, ac
-                condimentum sem sapien eget purus.
+                Traditional mobile games exist entirely in digital space. CITRIS
+                Quest bridges physical and digital worlds: players explore real UC
+                campuses hunting for pixel art stickers, then scan them with their
+                phones to score points. The game turns campuses into playgrounds
+                while showcasing CITRIS's 25-year history through artwork
+                representing landmark projects and research breakthroughs.
               </p>
+              <h4 class="details-heading">
+                CNN Robustness Under Real-World Conditions
+              </h4>
               <p class="details-section">
-                Morbi consequat ex nec velit eleifend, eget cursus est
-                vestibulum. Vestibulum ante ipsum primis in faucibus orci
-                luctus.
+                Training a CNN to recognize pixel art isn't hard—getting it to
+                work in students' hands is. Real scans happen outdoors in direct
+                sunlight, indoors under fluorescent lights, while walking (motion
+                blur), at tilted angles, with fingers partially covering stickers,
+                on worn stickers with faded colors. I trained the model on heavily
+                augmented data—random rotations, brightness variations, Gaussian
+                noise, synthetic occlusions—forcing it to learn robust features
+                rather than memorizing pristine examples.
+              </p>
+              <h4 class="details-heading">
+                Full-Stack Development and Team Leadership
+              </h4>
+              <p class="details-section">
+                I architected the entire product: Flutter app for cross-platform
+                mobile, Supabase PostgreSQL for user auth and data storage,
+                real-time WebSocket connections for live leaderboard updates, and
+                admin dashboards for monitoring gameplay. Leading a team meant
+                balancing feature requests against technical constraints, reviewing
+                code for quality and consistency, and making architectural
+                decisions with long-term maintenance in mind—like choosing managed
+                services over self-hosted infrastructure to reduce operational
+                burden.
+              </p>
+              <h4 class="details-heading">
+                Designing for Non-Technical Users
+              </h4>
+              <p class="details-section">
+                The hardest part wasn't building the technology—it was making it
+                intuitive. Early versions required perfect scans, frustrating
+                players. I added progressive feedback: if the model is 60%
+                confident, show a hint; if 80%, show "almost there"; if 95%,
+                accept the scan. This guided users toward better shots without
+                explicit instructions. The lesson: great ML products hide
+                complexity behind simple interfaces.
               </p>
               <div class="details-links">
                 <a
@@ -801,15 +1167,69 @@
               <span class="expand-toggle-label">Click to view details</span>
             </button>
             <div id="project-details-2" class="expandable-details" hidden>
-              <h4 class="details-heading">Root Cause Analysis</h4>
+              <h4 class="details-heading">
+                Automating Failure Diagnosis at Supercomputing Scale
+              </h4>
               <p class="details-section">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Phasellus quis gravida lacus, at convallis libero. Integer
-                semper sagittis dolor, id aliquam diam fermentum vitae.
+                NASA's supercomputing infrastructure processes thousands of jobs
+                daily across climate modeling, aerodynamics simulations, and
+                mission-critical calculations. When jobs fail, engineers manually
+                sift through logs to diagnose root causes—a bottleneck that delays
+                research and wastes compute resources. ANDROMEDA automates this
+                process using unsupervised machine learning to identify failure
+                patterns, categorize issues, and surface interpretable insights
+                without requiring labeled training data.
               </p>
+              <h4 class="details-heading">
+                The Challenge: No Ground Truth Labels
+              </h4>
               <p class="details-section">
-                Donec et vehicula nisl, id dictum nulla. Aliquam erat volutpat.
-                Donec vitae nisi et sapien interdum ullamcorper.
+                Traditional supervised learning requires labeled examples of "this
+                log pattern = memory overflow" or "this trace = network timeout."
+                NASA's failure logs don't come pre-labeled, and manually tagging
+                thousands of historical failures isn't feasible. The system needed
+                to learn failure signatures directly from unlabeled data while
+                producing explanations that domain experts could validate and act
+                on.
+              </p>
+              <h4 class="details-heading">
+                Building Self-Supervised Pattern Recognition
+              </h4>
+              <p class="details-section">
+                I designed a contrastive learning architecture that treats similar
+                failure traces as positive pairs and dissimilar ones as negatives,
+                learning representations that cluster related failures together.
+                The pipeline processes raw log data through semantic embedding
+                models to capture contextual meaning, then applies HDBSCAN
+                clustering to group failures by shared characteristics. An
+                attention mechanism highlights which log segments drove each
+                cluster assignment, giving operators transparency into why the
+                system flagged specific patterns.
+              </p>
+              <h4 class="details-heading">
+                Production Integration and Interpretability
+              </h4>
+              <p class="details-section">
+                Rather than a black-box classifier, ANDROMEDA generates structured
+                diagnostic reports mapping each failure to its closest historical
+                matches and surfacing the distinguishing features. This lets
+                engineers validate whether the system's pattern detection aligns
+                with known failure modes. The architecture handles NASA's log
+                volume and diversity while maintaining fast inference for real-time
+                alerting.
+              </p>
+              <h4 class="details-heading">
+                Scaling RCA Without Manual Annotation
+              </h4>
+              <p class="details-section">
+                The system demonstrated that unsupervised learning could replace
+                manual root cause analysis for recurring failure classes. By
+                eliminating the labeling bottleneck, the approach generalizes to
+                new failure types as they emerge rather than requiring retraining
+                on annotated data. This work showed me how critical
+                interpretability is when deploying ML in high-stakes
+                infrastructure—domain experts won't trust opaque models, even if
+                metrics look good.
               </p>
               <div class="details-links">
                 <a
@@ -862,16 +1282,68 @@
               <span class="expand-toggle-label">Click to view details</span>
             </button>
             <div id="project-details-3" class="expandable-details" hidden>
-              <h4 class="details-heading">Experience Design</h4>
+              <h4 class="details-heading">
+                Voice AI for Non-Technical Seniors
+              </h4>
               <p class="details-section">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque ut pharetra lacus. In id massa scelerisque,
-                tincidunt enim non, condimentum orci.
+                Elderly users often struggle with smartphone interfaces: small
+                text, complex navigation, changing app layouts, and features
+                they've never seen before. Assistify is an iOS voice assistant that
+                helps seniors use their phones through natural conversation. Users
+                describe what they want to accomplish ("I want to text my
+                daughter"), and the system provides step-by-step audio guidance
+                while understanding the current screen context—eliminating the gap
+                between "I need help" and "here's what to tap next."
               </p>
+              <h4 class="details-heading">
+                Real-Time Screen Understanding and Guidance
+              </h4>
               <p class="details-section">
-                Vivamus sed ullamcorper orci. Cras accumsan, sem vel
-                sollicitudin tempus, enim risus egestas elit, nec sollicitudin
-                lectus augue in lorem.
+                The system uses vision-language models (Gemini API) to analyze
+                screenshots in real-time, identifying UI elements, reading
+                on-screen text, and mapping the layout. When a user asks for help,
+                Assistify generates contextualized instructions: "Tap the green
+                button in the bottom right corner" or "Scroll down and look for the
+                Settings icon." This requires understanding both spatial
+                relationships (where things are) and semantic meaning (what they
+                do)—bridging computer vision and language understanding.
+              </p>
+              <h4 class="details-heading">
+                Spatial Audio for Always-Available Assistance
+              </h4>
+              <p class="details-section">
+                Rather than requiring users to open the app explicitly, Assistify
+                uses spatial audio to create distinct voice positions: the
+                assistant speaks from "left," the user from "center." This lets
+                users talk to the assistant anytime—even while using other
+                apps—because their voice is directionally distinct from other
+                audio. Combined with background screen recording, the system
+                maintains context across the entire phone experience, not just when
+                the app is foreground.
+              </p>
+              <h4 class="details-heading">RAG-Powered Personalization Memory</h4>
+              <p class="details-section">
+                The system stores user preferences, common tasks, and interaction
+                history in a pgvector database, enabling personalized responses
+                over time. If a user frequently texts their daughter, Assistify
+                learns that context and can say "Would you like to text Sarah?"
+                instead of generic "Would you like to send a message?" This
+                personalization layer, implemented via RAG (retrieval-augmented
+                generation), pulls relevant memories into each conversation, making
+                interactions feel natural and contextual rather than robotic.
+              </p>
+              <h4 class="details-heading">
+                Achieving 92% Task Completion in User Testing
+              </h4>
+              <p class="details-section">
+                We tested Assistify with elderly participants across common tasks:
+                sending texts, making calls, finding apps, adjusting settings, and
+                navigating menus. The system achieved 92% successful task
+                completion, with most failures occurring when users gave ambiguous
+                instructions ("open the thing") rather than system limitations. The
+                work demonstrated that voice AI paired with visual understanding
+                could dramatically improve accessibility—not by simplifying the
+                phone, but by making complexity navigable through conversation.
               </p>
               <div class="details-links">
                 <a

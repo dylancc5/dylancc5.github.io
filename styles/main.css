@@ -690,14 +690,14 @@ body {
     font-size: 0.95rem;
     color: var(--text-secondary);
     line-height: 1.8;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
 }
 
 .details-links {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: 0.75rem;
+    margin-top: 1.5rem;
 }
 
 .details-link {
@@ -705,7 +705,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.15rem 0.65rem 1rem;
     border-radius: 8px;
     border: 1px solid rgba(74, 158, 255, 0.5);
     background: rgba(74, 158, 255, 0.06);
