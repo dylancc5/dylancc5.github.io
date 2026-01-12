@@ -237,16 +237,48 @@ skillCategories.forEach((category, index) => {
 });
 
 // ===== Expandable Experience & Project Details (Accordion) =====
+/**
+ * Checks if any section headers are visible in the current viewport
+ * @returns {boolean} True if at least one header is visible
+ */
+function isAnyHeaderVisible() {
+    const headerSelectors = [
+        'h2',                    // Section headings (Experience, Projects)
+        '.timeline-header',      // Experience item headers
+        '.project-title'         // Project card headers
+    ];
+
+    const viewportHeight = window.innerHeight;
+
+    for (const selector of headerSelectors) {
+        const headers = document.querySelectorAll(selector);
+        for (const header of headers) {
+            const rect = header.getBoundingClientRect();
+            // Check if any part of header is in viewport
+            if (rect.top < viewportHeight && rect.bottom > 0) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
 function setupExpandableSections() {
     const toggles = document.querySelectorAll('.expand-toggle');
     if (!toggles.length) return;
 
     let currentOpenExperience = null;
     let currentOpenProject = null;
+    let skipCollapseScroll = false; // Flag to skip collapse scroll when opening a new section
 
-    function closeSection(sectionState) {
+    function closeSection(sectionState, container = null) {
         if (!sectionState) return;
         const { toggle, details } = sectionState;
+
+        // Check header visibility before closing
+        const noHeadersVisible = !isAnyHeaderVisible();
+
         toggle.setAttribute('aria-expanded', 'false');
         // Ensure we animate from the current content height back to 0
         const currentHeight = details.scrollHeight;
@@ -258,6 +290,24 @@ function setupExpandableSections() {
         // Start fade-out and height collapse; opacity animates via .open removal
         details.classList.remove('open');
         details.style.maxHeight = '0px';
+
+        // If no headers visible and we have a container, scroll to top after collapse
+        // Skip if we're about to open a new section (skipCollapseScroll flag)
+        if (noHeadersVisible && container && !skipCollapseScroll) {
+            // Wait for collapse animation to complete (400ms)
+            setTimeout(() => {
+                // Double-check the flag inside setTimeout in case it was reset
+                if (!skipCollapseScroll) {
+                    const containerRect = container.getBoundingClientRect();
+                    const scrollAmount = containerRect.top - 100; // 100px margin from top
+
+                    window.scrollBy({
+                        top: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 400); // Match CSS transition duration
+        }
 
         // Wait for transition to finish before hiding
         const onTransitionEnd = (event) => {
@@ -271,26 +321,73 @@ function setupExpandableSections() {
     }
 
     function openSection(toggle, details, sectionKey, clickedContainer) {
-        // Store the container's position before any changes
-        const containerRect = clickedContainer.getBoundingClientRect();
-        const initialTop = containerRect.top;
+        // Capture initial position BEFORE any DOM changes
+        const initialContainerRect = clickedContainer.getBoundingClientRect();
+        const initialTop = initialContainerRect.top;
 
-        // Close any currently open in this section
+        // Track collapse information
+        let collapseHeight = 0;
+        let hasClosingSection = false;
+        let isCollapsingBoxAbove = false;
+
+        // Set flag to prevent collapse from triggering its own scroll
+        skipCollapseScroll = true;
+
+        // If there's a closing section, capture its height and position BEFORE closing
         if (sectionKey === 'experience' && currentOpenExperience) {
-            closeSection(currentOpenExperience);
+            const prevContainer = currentOpenExperience.toggle.closest('.timeline-item');
+            const prevContainerRect = prevContainer.getBoundingClientRect();
+            // Check if collapsing box is above the expanding box
+            isCollapsingBoxAbove = prevContainerRect.top < initialTop;
+            // Capture the height that will be removed by the collapse
+            collapseHeight = currentOpenExperience.details.scrollHeight;
+            closeSection(currentOpenExperience, prevContainer);
             currentOpenExperience = null;
+            hasClosingSection = true;
         }
         if (sectionKey === 'projects' && currentOpenProject) {
-            closeSection(currentOpenProject);
+            const prevContainer = currentOpenProject.toggle.closest('.project-card');
+            const prevContainerRect = prevContainer.getBoundingClientRect();
+            // Check if collapsing box is above the expanding box
+            isCollapsingBoxAbove = prevContainerRect.top < initialTop;
+            // Capture the height that will be removed by the collapse
+            collapseHeight = currentOpenProject.details.scrollHeight;
+            closeSection(currentOpenProject, prevContainer);
             currentOpenProject = null;
+            hasClosingSection = true;
         }
 
         // If this one was already open, just ensure state is closed
         const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
         if (isExpanded) {
-            closeSection({ toggle, details });
+            // Reset flag before closing (since we're not opening a new section)
+            skipCollapseScroll = false;
+            closeSection({ toggle, details }, clickedContainer);
             return;
         }
+
+        // Calculate scroll target immediately, before opening
+        // If collapsing box is ABOVE: expanding box moves up by collapseHeight
+        // If collapsing box is BELOW: expanding box doesn't move (stays in same position)
+        let targetScrollAmount;
+        if (hasClosingSection && isCollapsingBoxAbove) {
+            // Collapsing box is above: account for the upward shift
+            targetScrollAmount = (initialTop - collapseHeight) - 100;
+        } else {
+            // No closing section OR collapsing box is below: normal calculation
+            targetScrollAmount = initialTop - 100;
+        }
+
+        // Start scrolling immediately - it will be smooth and continuous during animations
+        window.scrollBy({
+            top: targetScrollAmount,
+            behavior: 'smooth'
+        });
+
+        // Reset flag after scroll is initiated
+        setTimeout(() => {
+            skipCollapseScroll = false;
+        }, 50);
 
         // Open this details panel
         toggle.setAttribute('aria-expanded', 'true');
@@ -308,27 +405,6 @@ function setupExpandableSections() {
         } else if (sectionKey === 'projects') {
             currentOpenProject = state;
         }
-
-        // Continuously monitor and adjust scroll position during animation
-        const startTime = Date.now();
-        const duration = 400; // Match CSS transition duration
-
-        function maintainPosition() {
-            const elapsed = Date.now() - startTime;
-            if (elapsed < duration) {
-                const currentTop = clickedContainer.getBoundingClientRect().top;
-                const shift = currentTop - initialTop;
-                if (Math.abs(shift) > 1) {
-                    window.scrollBy({
-                        top: shift,
-                        behavior: 'instant'
-                    });
-                }
-                requestAnimationFrame(maintainPosition);
-            }
-        }
-
-        requestAnimationFrame(maintainPosition);
     }
 
     toggles.forEach(toggle => {
@@ -349,7 +425,7 @@ function setupExpandableSections() {
         toggle.addEventListener('click', () => {
             const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
             if (isExpanded) {
-                closeSection({ toggle, details });
+                closeSection({ toggle, details }, container);
                 if (sectionKey === 'experience') {
                     currentOpenExperience = null;
                 } else if (sectionKey === 'projects') {
